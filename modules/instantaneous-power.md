@@ -119,10 +119,3 @@ back. That round trip is <span class="q">Q</span>.
   sign of <span class="q">Q</span> flips — inductive versus capacitive. This is the
   sign convention that **2.19** depends on.
 {: .try }
-
-## The point
-
-Reactive power is not a bookkeeping fiction, and it is not wasted power either. It
-is energy in transit that never gets consumed. The formula
-<span class="q">Q = |V||I| sin&theta;</span> is measuring the size of those orange
-lobes.
