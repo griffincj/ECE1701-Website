@@ -1,0 +1,195 @@
+// ============================================================
+//  Widget support for Claude-generated demos.
+//
+//  This is a standalone partial. It does nothing until you add
+//  one line to the BOTTOM of the existing _sass/custom/custom.scss
+//  (do not replace that file — Just the Class ships real content
+//  in it):
+//
+//      @import "./demo-widgets";
+//
+//  Everything then compiles into the theme's stylesheet, so
+//  there is no separate <link> and no asset URL for baseurl to
+//  break.
+//
+//  Widgets pasted out of Claude reference CSS custom properties
+//  and a few utility classes that the chat page defines for
+//  them. Defining the same names here is what makes pasted code
+//  render correctly instead of losing its card backgrounds and
+//  axis labels.
+//
+//  Required by widgets:  --surface-1  --text-secondary
+//                        --text-muted --border-strong
+//                        .sr-only  .ts  .th
+// ============================================================
+
+:root {
+  // Greys are cool to sit under the plot colours, which are
+  // hardcoded in each widget: voltage #185FA5, current #BA7517,
+  // power #0F6E56, average #534AB7.
+  --surface-1: #e7ecf0;
+  --text-secondary: #4b5765;
+  --text-muted: #8795a3;
+  --border-strong: #a7b3bf;
+  --widget-accent: #185fa5;
+
+  --font-widget: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+// Screen-reader summary that every widget opens with.
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ---- The widget container ----------------------------------
+// Wrap every pasted widget in <div class="demo-widget"> and it
+// picks up all of the following automatically.
+
+.demo-widget {
+  font-family: var(--font-widget);
+  background: #fff;
+  border: 1px solid #e6e9ec;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  margin: 1.5rem 0 2rem;
+
+  // SVG text classes used inside the plots.
+  // .ts = small annotation or axis label   .th = heading label
+  text.ts {
+    font-family: var(--font-data);
+    font-size: 12px;
+    fill: var(--text-secondary);
+  }
+
+  text.th {
+    font-family: var(--font-widget);
+    font-size: 13px;
+    font-weight: 600;
+    fill: #14181d;
+  }
+
+  // Metric-card values and slider read-outs.
+  //
+  // The widgets set font-size and weight inline but never
+  // font-family, and every numeric element carries an id while
+  // its label does not. So [id] is a reliable hook for "this is
+  // a number — set it in mono with tabular figures."
+  p[id],
+  span[id] {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  input[type="range"] {
+    accent-color: var(--widget-accent);
+    height: 1.5rem;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--widget-accent);
+      outline-offset: 3px;
+    }
+  }
+
+  // Includes the "ask Claude" buttons, which the sendPrompt shim
+  // in assets/js/site.js turns into copy-to-clipboard.
+  button {
+    font-family: var(--font-widget);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--widget-accent);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--surface-1);
+      border-color: var(--widget-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--widget-accent);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ---- Prose helpers ----------------------------------------
+
+// Numbers and symbols in the surrounding text, so a quantity
+// reads as data without the background box that inline `code`
+// would give it.
+.q {
+  font-family: var(--font-data);
+  font-size: 0.9em;
+  font-variant-numeric: tabular-nums;
+}
+
+// "What to try" lists. Apply with a kramdown attribute list:
+//     {: .try }
+// immediately after the list. These are manipulations to
+// attempt, not an ordered sequence, so they take a marker
+// rather than a number.
+.try {
+  list-style: none;
+  padding-left: 0;
+
+  > li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.85rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 0.7rem;
+      height: 2px;
+      background: #ba7517;
+    }
+
+    &::marker {
+      content: none;
+    }
+  }
+}
+
+// ---- Clipboard toast (see assets/js/site.js) --------------
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  background: #14181d;
+  color: #fff;
+  font-family: var(--font-widget);
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  z-index: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-widget * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
