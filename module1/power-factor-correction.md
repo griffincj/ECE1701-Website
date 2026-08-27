@@ -2,7 +2,7 @@
 layout: page
 title: Power factor correction
 description: Interactive power triangle showing how a capacitor bank shrinks the reactive leg without changing real power.
-parent: Modules
+parent: Module 1 - Fundamentals
 nav_order: 2
 ---
 

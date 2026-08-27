@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Modules
+title: Module 1 - Fundamentals
 description: Interactive visualizations for homework problems and lecture examples.
 has_children: true
 nav_order: 5
 ---
 
-# Modules
+# Module 1
 ECE 1701 consists of four modules:
 - Power System Fundamentals
 - Transformers

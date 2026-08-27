@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Just the Class
-tagline: A Jekyll template for course websites
-description: A modern, highly customizable, responsive Jekyll template for course websites
-author: Kevin Lin
+title: ECE 1701
+tagline: This is a first course in electric power engineering for electrical and computer engineers.
+description: The course provides the fundamental background to solve some common problems in electric power engineering, and to design power systems using engineering assumptions based on this background. The main objective is to cover topics in AC single phase and three phase power, transformers, transmission lines and electric machinery by integrating their knowledge of linear circuit analysis, electricity, and magnetism to these power systems topics.
+author: ECE 1701
 baseurl: '/ECE1701-Website' # the subpath of your site, e.g. /blog
 url: 'https://griffincj.github.io/' # the base hostname & protocol for your site, e.g. http://example.com
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
@@ -28,10 +28,8 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
-  Kevin Lin:
-    - 'https://kevinl.info'
-  Just the Class on GitHub:
-    - 'https://github.com/kevinlin1/just-the-class'
+  Canvas:
+    - 'https://canvas.pitt.edu/courses/384647'
 footer_content:
 
 # Collections for website data

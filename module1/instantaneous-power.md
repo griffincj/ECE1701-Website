@@ -2,7 +2,7 @@
 layout: page
 title: Instantaneous power
 description: Interactive plot of voltage, current, and their product as the phase angle varies.
-parent: Modules
+parent: Module 1 - Fundamentals
 nav_order: 1
 ---
 
